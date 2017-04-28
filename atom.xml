@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cclouds.github.io/"/>
-  <updated>2017-04-28T02:07:56.349Z</updated>
+  <updated>2017-04-28T03:29:53.304Z</updated>
   <id>http://cclouds.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo+github个人博客搭建</title>
+    <link href="http://cclouds.github.io/2017/04/28/hexo-github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>http://cclouds.github.io/2017/04/28/hexo-github个人博客搭建/</id>
+    <published>2017-04-28T03:18:20.000Z</published>
+    <updated>2017-04-28T03:29:53.304Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="hexo-github个人博客搭建"><a href="#hexo-github个人博客搭建" class="headerlink" title="hexo+github个人博客搭建"></a>hexo+github个人博客搭建</h2><h2 id="安装前提软件"><a href="#安装前提软件" class="headerlink" title="安装前提软件"></a>安装前提软件</h2><p><a href="https://nodejs.org/en" target="_blank" rel="external">Node.js</a>:</p>
+<p><a href="http://git-scm.com/download" target="_blank" rel="external">Git客户端</a>:</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>hexo常用的命令：<br>hexo g #完整命令为hexo generate,用于生成静态文件<br>hexo s #完整命令为hexo server,用于启动服务器，主要用来本地预览<br>hexo d #完整命令为hexo deploy,用于将本地文件发布到github上<br>hexo n #完整命令为hexo new,用于新建一篇文章</p>
+<p>输入安装hexo命令：npm install -g hexo</p>
+<p>安装完成后，在你喜爱的文件夹下（如E:\Hexo），执行以下指令(在E:\Hexo内点击鼠标右键，选择Git Bash)，Hexo 即会自动在目标文件夹建立网站所需要的所有文件。<br>输入命令：hexo init</p>
+<p>安装依赖包：npm install</p>
+<p>在E:\hexo内执行以下命令：<br>hexo g<br>hexo s</p>
+<p>然后用浏览器访问<a href="http://localhost:4000，" target="_blank" rel="external">http://localhost:4000，</a> 此时，你应该看到了一个漂亮的博客</p>
+<h3 id="注册Github帐号"><a href="#注册Github帐号" class="headerlink" title="注册Github帐号"></a>注册Github帐号</h3><p>进入<a href="https://github.com/" target="_blank" rel="external">Github</a>进行注册</p>
+<h3 id="创建repository"><a href="#创建repository" class="headerlink" title="创建repository"></a>创建repository</h3><p>首先，登陆进入<a href="https://github.com/" target="_blank" rel="external">Github</a>，并进入个人页面，选择<code>repositorie，然后New一个</code>repository</p>
+<p> <img src="http://i4.buimg.com/567571/2b9af8f59d8ba258.png" alt=""></p>
+<h3 id="部署本地文件到github"><a href="#部署本地文件到github" class="headerlink" title="部署本地文件到github"></a>部署本地文件到github</h3><p>编辑E：\hexo下的_config.yml文件，建议使用Notepad++。<br>在_config.yml最下方，添加如下配置(命令中的第一个cclouds为Github的用户名,第二个cclouds为之前New的Repository的名字,hexo的配置文件中任何’:’后面都是带一个空格的)</p>
+<p>deploy:<br>  type: git<br>  repository: <a href="https://github.com/cclouds/cclouds.github.io.git" target="_blank" rel="external">https://github.com/cclouds/cclouds.github.io.git</a><br>  branch: master</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;hexo-github个人博客搭建&quot;&gt;&lt;a href=&quot;#hexo-github个人博客搭建&quot; class=&quot;headerlink&quot; title=&quot;hexo+github个人博客搭建&quot;&gt;&lt;/a&gt;hexo+github个人博客搭建&lt;/h2&gt;&lt;h2 id=&quot;安装前提软
+    
+    </summary>
+    
+    
+      <category term="blog" scheme="http://cclouds.github.io/tags/blog/"/>
+    
+  </entry>
   
   <entry>
     <title>Mycat学习笔记</title>
