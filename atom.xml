@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cclouds.github.io/"/>
-  <updated>2017-04-28T05:29:07.905Z</updated>
+  <updated>2017-04-28T06:51:46.611Z</updated>
   <id>http://cclouds.github.io/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo提交搜索引擎</title>
+    <link href="http://cclouds.github.io/2017/04/28/hexo%E6%8F%90%E4%BA%A4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"/>
+    <id>http://cclouds.github.io/2017/04/28/hexo提交搜索引擎/</id>
+    <published>2017-04-28T06:25:05.000Z</published>
+    <updated>2017-04-28T06:51:46.611Z</updated>
+    
+    <content type="html"><![CDATA[<p>分别介绍谷歌和百度如何提交搜索引擎</p>
+<h2 id="确认博客是否被收录"><a href="#确认博客是否被收录" class="headerlink" title="确认博客是否被收录"></a>确认博客是否被收录</h2><p>在百度或者谷歌上面输入下面格式来判断，如果能搜索到就说明被收录，否则就没有</p>
+<p> <img src="http://i4.buimg.com/567571/1de93318774276ab.png" alt=""></p>
+<p> <img src="http://i1.piimg.com/567571/8b28a88c5beb3dbf.png" alt=""></p>
+<h2 id="验证网站"><a href="#验证网站" class="headerlink" title="验证网站"></a>验证网站</h2><p>两个搜索引擎入口：</p>
+<ul>
+<li><a href="https://www.google.com/webmasters/tools/home?hl=zh-CN" target="_blank" rel="external">Google搜索引擎提交入口</a></li>
+<li><a href="http://www.baidu.com/search/url_submit.htm" target="_blank" rel="external">百度搜索引擎入口</a></li>
+</ul>
+<p>在百度和谷歌分别添加cclouds.github.io   然后验证网站，这里统一都使用文件验证，就是下载对应的html文件，放到域名根目录下，也就收博客根目录下的source下面</p>
+<p> <img src="http://i1.piimg.com/567571/c780c0a94c665b2c.png" alt=""></p>
+<p>然后部署到服务器,输入地址：<a href="https://cclouds.github.io/baidu_verify_ovYuyaTjKS">https://cclouds.github.io/baidu_verify_ovYuyaTjKS</a> 能访问到就可以点验证按钮。</p>
+<p> <img src="http://i2.muimg.com/567571/65c41a7e9a788b50.png" alt=""></p>
+<p>站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知Google和其他搜索引擎。Googlebot等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</p>
+<p>我们要先安装一下，打开你的hexo博客根目录，分别用下面两个命令来安装针对谷歌和百度的插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-sitemap --save</div><div class="line">npm install hexo-generator-baidu-sitemap --save</div></pre></td></tr></table></figure>
+<p>编译你的博客,如果你在你的博客根目录的<code>public</code>下面发现生成了<code>sitemap.xml</code>以及<code>baidusitemap.xml</code>就表示成功了</p>
+<p>部署后你分别访问<br><a href="https://cclouds.github.io/sitemap.xml">https://cclouds.github.io/sitemap.xml</a><br><a href="https://cclouds.github.io/baidusitemap.xml">https://cclouds.github.io/baidusitemap.xml</a></p>
+<p>效果如下</p>
+<p> <img src="http://i4.buimg.com/567571/c285fc084d4dec47.png" alt=""></p>
+<p> <img src="http://i4.buimg.com/567571/6c0b6994eb0cff12.png" alt=""></p>
+<h2 id="让谷歌收录博客"><a href="#让谷歌收录博客" class="headerlink" title="让谷歌收录博客"></a>让谷歌收录博客</h2><p>谷歌操作比较简单，就是向<a href="https://www.google.com/webmasters/tools" target="_blank" rel="external">Google站长工具</a>提交sitemap</p>
+<p>登录Google账号，添加了站点验证通过后，选择站点，之后在<code>抓取</code>——<code>站点地图</code>中就能看到<code>添加/测试站点地图</code>，如下图：</p>
+<p> <img src="http://i4.buimg.com/567571/bb8b9b0f0cf388cd.png" alt=""></p>
+<h2 id="让百度收录博客"><a href="#让百度收录博客" class="headerlink" title="让百度收录博客"></a>让百度收录博客</h2><p>进入站点管理，找到网页抓取这边详情点进去</p>
+<p> <img src="http://i4.buimg.com/567571/a5bd07d145fe8d5c.png" alt=""></p>
+<blockquote>
+<p>如何选择链接提交方式<br>1、主动推送：最为快速的提交方式，推荐您将站点当天新产出链接立即通过此方式推送给百度，以保证新链接可以及时被百度收录。<br>2、自动推送：最为便捷的提交方式，请将自动推送的JS代码部署在站点的每一个页面源代码中，部署代码的页面在每次被浏览时，链接会被自动推送给百度。可以与主动推送配合使用。<br>3、sitemap：您可以定期将网站链接放到sitemap中，然后将sitemap提交给百度。百度会周期性的抓取检查您提交的sitemap，对其中的链接进行处理，但收录速度慢于主动推送。<br>4、手动提交：一次性提交链接给百度，可以使用此种方式。</p>
+</blockquote>
+<p>这里介绍自动推送</p>
+<p>在你代码里面嵌入自动推送JS代码，在页面被访问时，页面URL将立即被推送给百度<br>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> bp = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    <span class="keyword">var</span> curProtocol = <span class="built_in">window</span>.location.protocol.split(<span class="string">':'</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">if</span> (curProtocol === <span class="string">'https'</span>) &#123;</div><div class="line">        bp.src = <span class="string">'https://zz.bdstatic.com/linksubmit/push.js'</span>;        </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        bp.src = <span class="string">'http://push.zhanzhang.baidu.com/push.js'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>];</div><div class="line">    s.parentNode.insertBefore(bp, s);</div><div class="line">&#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>我是放在<code>\themes\jacman\layout\_partial\after_footer.ejs</code>中，添加到下面就行。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;分别介绍谷歌和百度如何提交搜索引擎&lt;/p&gt;
+&lt;h2 id=&quot;确认博客是否被收录&quot;&gt;&lt;a href=&quot;#确认博客是否被收录&quot; class=&quot;headerlink&quot; title=&quot;确认博客是否被收录&quot;&gt;&lt;/a&gt;确认博客是否被收录&lt;/h2&gt;&lt;p&gt;在百度或者谷歌上面输入下面格式来判
+    
+    </summary>
+    
+    
+      <category term="blog" scheme="http://cclouds.github.io/tags/blog/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo+jacman主题下载和配置</title>
