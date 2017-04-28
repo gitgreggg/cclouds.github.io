@@ -91,91 +91,6 @@
 </header>
     <div class="article-content">
         
-        <p>MyCat原理</p>
-<pre><code>Mycat实际上只是一个数据库的中间件，他并不存储任何数据。所以当有一天我们不用Mycat了只需要把mysql中的数据归集以后就能正常使用。
-</code></pre><p>Mycat的作用是统一出口，查询缓存，查询优化。</p>
-<p>MyCat特点</p>
-<p>1.支持 SQL 92标准 支持Mysql集群，可以作为Proxy使用 支持JDBC连接ORACLE、DB2、SQL Server，将其模拟为MySQL Server使用 支持galera for mysql集群，percona-cluster或者mariadb cluster，提供高可用性数据分片集群，自动故障切换，高可用性 。<br>2.支持读写分离(参考具体的schema.xml配置)。<br>3.支持Mysql双主多从，以及一主多从的模式 。<br>4.支持全局表。<br>5.支持数据自动分片到多个节点，用于高效表关联查询 。<br>6.垮库join，支持独有的基于E-R 关系的分片策略，实现了高效的表关联查询多平台支持，部署和实施简单。<br>7.支持nosql数据库mongoDB。</p>
-<p> 安装环境</p>
-<p>系统：windows<br>JDK版本：1.7<br>MySql客户端：navicat<br>MyCat下载地址：<a href="http://dl.mycat.io/1.6-RELEASE/" target="_blank" rel="external">http://dl.mycat.io/1.6-RELEASE/</a></p>
-<p>安装步骤<br> 1.下载安装包解压<br> 2.配置环境变量</p>
-<p>3.进入D:\mycat\bin  修改 schema.xml</p>
-<p>Schema</p>
-<pre><code>name:逻辑库名称，sqlMaxLimit:默认显示条数
-</code></pre><p>Table</p>
-<pre><code>name:逻辑表名称，rule:分片规则
-</code></pre><p> 4.进入D:\mycat\bin  修改 Server.xml  该文件配置MyCat连接的账户信息</p>
-<p> 5.进入D:\mycat\bin  修改 rule.xml </p>
-<p> tableRule</p>
-<pre><code>name:规则名称 ， column:分片的列 ，algorithm:function的名字
-</code></pre><p>function</p>
-<pre><code>name:方法名称 ， class:实现分片的具体类
-</code></pre><p>6.启动MayCat,双击startup_nowrap.bat启动mycat服务 </p>
-<p>7.打开navicat客户端，连接mycat。 账户：root，密码：123456，端口：8066</p>
-<p>8.连接mysql ，账户：root，密码：123456，端口：3306</p>
-<p>根据rule2分片：</p>
-<pre><code>在mysql  db1,db2,db3,db4每个库下面建立表t_user，创建表脚本如下：
-</code></pre><p>DROP TABLE IF EXISTS <code>t_user</code>;<br>CREATE TABLE <code>t_user</code> (<br><code>user_id</code> int(11) NOT NULL COMMENT ‘用户ID’,<br><code>receive_address</code> varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT ‘收货地址’,<br><code>create_time</code> datetime NOT NULL,<br><code>province_code</code> varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,<br>PRIMARY KEY (<code>user_id</code>)<br>) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT=’用户信息表’;</p>
-<p>在mycat的TESTDB下面的的表t_user插入3000条数据，数据自动分配到4个mysql数据库中。</p>
-<p>根据sharding-by-month分片：</p>
-<pre><code>在mysql  db1-db12每个库下面建立表wallet_profit，创建表脚本如下：
-</code></pre><p>DROP TABLE IF EXISTS <code>wallet_profit</code>;<br>CREATE TABLE <code>wallet_profit</code> (<br><code>id</code> bigint(18) NOT NULL AUTO_INCREMENT,<br><code>member_id</code> bigint(18) NOT NULL COMMENT ‘会员ID’,<br><code>profit_date</code> date NOT NULL COMMENT ‘计息时间’,<br><code>prod_id</code> bigint(18) NOT NULL,<br><code>wallet_amount</code> bigint(22) NOT NULL COMMENT ‘金额’,<br><code>day_wallet_profit</code> bigint(22) NOT NULL COMMENT ‘昨日总利息’,<br><code>base_profit</code> bigint(22) NOT NULL COMMENT ‘基础利息’,<br><code>coupon_profit</code> bigint(22) DEFAULT NULL COMMENT ‘加息券利息’,<br><code>annual_rate</code> int(11) NOT NULL COMMENT ‘基础年化’,<br><code>coupon_rate</code> int(11) NOT NULL COMMENT ‘加息券年化’,<br><code>gmt_create</code> datetime DEFAULT NULL,<br><code>gmt_modify</code> datetime DEFAULT NULL,<br>PRIMARY KEY (<code>id</code>),<br>KEY <code>idx_withdraw_profit_member_id</code> (<code>member_id</code>) USING BTREE,<br>KEY <code>idx_withdraw_profit_date</code> (<code>profit_date</code>) USING BTREE<br>) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT=’收益表’;</p>
-<p>在mycat的TESTDB下面的的表wallet_profit插入以下数据，数据将按照月份分配到12个数据库中。</p>
-<p>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000000287210’, ‘600000000000015303’, ‘2016-01-01’, ‘100000000000000001’, ‘4000300’, ‘1100’, ‘876’, ‘219’, ‘80000’, ‘20000’, ‘2016-01-02 00:40:00’, ‘2016-01-02 00:40:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000001100149’, ‘600000000000059488’, ‘2016-02-01’, ‘100000000000000001’, ‘2000248200’, ‘548000’, ‘438410’, ‘109602’, ‘80000’, ‘20000’, ‘2016-02-02 00:40:01’, ‘2016-02-02 00:40:01’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000002350084’, ‘600000000000328547’, ‘2016-03-01’, ‘100000000000000001’, ‘300’, ‘0’, ‘0’, ‘0’, ‘80000’, ‘20000’, ‘2016-03-02 00:40:00’, ‘2016-03-02 00:40:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000003981684’, ‘600000000000005348’, ‘2016-04-01’, ‘100000000000000001’, ‘20000000’, ‘6000’, ‘4383’, ‘1643’, ‘80000’, ‘30000’, ‘2016-04-02 00:10:00’, ‘2016-04-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000005839454’, ‘600000000000036991’, ‘2016-05-01’, ‘100000000000000001’, ‘75783900’, ‘20800’, ‘16610’, ‘4152’, ‘80000’, ‘20000’, ‘2016-05-02 00:10:00’, ‘2016-05-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000007989136’, ‘600000000000009157’, ‘2016-06-01’, ‘100000000000000001’, ‘941194900’, ‘283600’, ‘206289’, ‘77358’, ‘80000’, ‘30000’, ‘2016-06-02 00:10:00’, ‘2016-06-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000010286130’, ‘600000000000362561’, ‘2016-07-01’, ‘100000000000000001’, ‘1949012700’, ‘587400’, ‘427180’, ‘160192’, ‘80000’, ‘30000’, ‘2016-07-02 00:10:00’, ‘2016-07-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000012917800’, ‘600000000000543800’, ‘2016-08-01’, ‘100000000000000656’, ‘4930000’, ‘1200’, ‘1080’, ‘135’, ‘80000’, ‘10000’, ‘2016-08-02 00:10:00’, ‘2016-08-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000016961611’, ‘600000000000614085’, ‘2016-09-01’, ‘100000000000000656’, ‘250068500’, ‘68500’, ‘54809’, ‘13702’, ‘80000’, ‘20000’, ‘2016-09-02 00:10:00’, ‘2016-09-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000023765373’, ‘600000000000006820’, ‘2016-10-01’, ‘100000000000000656’, ‘434073900’, ‘130800’, ‘95139’, ‘35677’, ‘80000’, ‘30000’, ‘2016-10-02 00:10:00’, ‘2016-10-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000031369981’, ‘600000000000684383’, ‘2016-11-01’, ‘100000000000000656’, ‘630350900’, ‘172700’, ‘138159’, ‘34539’, ‘80000’, ‘20000’, ‘2016-11-02 00:10:00’, ‘2016-11-02 00:10:00’);<br>INSERT INTO <code>wallet_profit</code> (<code>id</code>, <code>member_id</code>, <code>profit_date</code>, <code>prod_id</code>, <code>wallet_amount</code>, <code>day_wallet_profit</code>, <code>base_profit</code>, <code>coupon_profit</code>, <code>annual_rate</code>, <code>coupon_rate</code>, <code>gmt_create</code>, <code>gmt_modify</code>) VALUES (‘100000000039289911’, ‘600000000000732505’, ‘2016-12-01’, ‘100000000000000656’, ‘35000000’, ‘11500’, ‘7671’, ‘3835’, ‘80000’, ‘40000’, ‘2016-12-02 00:10:00’, ‘2016-12-02 00:10:00’);</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/blog/">blog</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/04/28/Mycat/" title="Mycat学习笔记" itemprop="url">Mycat学习笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="cclouds" target="_blank" itemprop="author">cclouds</a>
-		
-  <p class="article-time">
-    <time datetime="2017-04-28T01:26:46.000Z" itemprop="datePublished"> 发表于 2017-04-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
         <h3 id="MyCat原理"><a href="#MyCat原理" class="headerlink" title="MyCat原理"></a>MyCat原理</h3><p>Mycat实际上只是一个数据库的中间件，他并不存储任何数据。所以当有一天我们不用Mycat了只需要把mysql中的数据归集以后就能正常使用。</p>
 <p>Mycat的作用是统一出口，查询缓存，查询优化。</p>
 <p> <img src="http://i2.muimg.com/567571/b976e7ec976a374c.png" alt=""></p>
@@ -271,7 +186,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/blog/" title="blog">blog<sup>2</sup></a></li>
+				<li><a href="/tags/blog/" title="blog">blog<sup>1</sup></a></li>
 			
 		
 		</ul>
