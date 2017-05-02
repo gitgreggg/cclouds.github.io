@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://cclouds.github.io/2017/04/28/hexo-jacman%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD%E5%92%8C%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2017-05-02T06:55:27.652Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cclouds.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-05-02T06:53:57.627Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://cclouds.github.io/tags/index.html</loc>
     
     <lastmod>2017-05-02T06:51:55.371Z</lastmod>
@@ -40,13 +54,6 @@
     <loc>http://cclouds.github.io/2017/04/28/hexo%E6%8F%90%E4%BA%A4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</loc>
     
     <lastmod>2017-05-02T05:45:47.874Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://cclouds.github.io/2017/04/28/hexo-jacman%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD%E5%92%8C%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2017-05-02T05:44:43.194Z</lastmod>
     
   </url>
   
