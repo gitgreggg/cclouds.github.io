@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>简单工厂模式 | cclouds</title>
+    <title>工厂方法模式 | cclouds</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="cclouds">
     
 
     
-    <meta name="description" content="简单工厂模式简单工厂模式又叫做静态工厂方法模式，简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。 计算器项目运算类 123456789101112131415161718192021222324public abstract class Operation &amp;#123;		protected double number1;		protected double number2;	publi">
+    <meta name="description" content="##工厂方法模式 工厂方法模式的用意是定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中。 计算器项目工厂接口 123public interface Factory &amp;#123;	Operation createOperation();&amp;#125; 加法类工厂实现工厂接口 123456public class AddFactory implements Factory&amp;#123;	@Ov">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单工厂模式">
-<meta property="og:url" content="http://cclouds.github.io/2017/05/02/简单工厂模式/index.html">
+<meta property="og:title" content="工厂方法模式">
+<meta property="og:url" content="http://cclouds.github.io/2017/05/02/工厂方法模式/index.html">
 <meta property="og:site_name" content="cclouds">
-<meta property="og:description" content="简单工厂模式简单工厂模式又叫做静态工厂方法模式，简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。 计算器项目运算类 123456789101112131415161718192021222324public abstract class Operation &amp;#123;		protected double number1;		protected double number2;	publi">
-<meta property="og:updated_time" content="2017-05-02T06:20:30.132Z">
+<meta property="og:description" content="##工厂方法模式 工厂方法模式的用意是定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中。 计算器项目工厂接口 123public interface Factory &amp;#123;	Operation createOperation();&amp;#125; 加法类工厂实现工厂接口 123456public class AddFactory implements Factory&amp;#123;	@Ov">
+<meta property="og:updated_time" content="2017-05-02T06:34:49.730Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单工厂模式">
-<meta name="twitter:description" content="简单工厂模式简单工厂模式又叫做静态工厂方法模式，简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。 计算器项目运算类 123456789101112131415161718192021222324public abstract class Operation &amp;#123;		protected double number1;		protected double number2;	publi">
+<meta name="twitter:title" content="工厂方法模式">
+<meta name="twitter:description" content="##工厂方法模式 工厂方法模式的用意是定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中。 计算器项目工厂接口 123public interface Factory &amp;#123;	Operation createOperation();&amp;#125; 加法类工厂实现工厂接口 123456public class AddFactory implements Factory&amp;#123;	@Ov">
 
     
     <link rel="alternative" href="/atom.xml" title="cclouds" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/05/02/简单工厂模式/" title="简单工厂模式" itemprop="url">简单工厂模式</a>
+      <a href="/2017/05/02/工厂方法模式/" title="工厂方法模式" itemprop="url">工厂方法模式</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="cclouds" target="_blank" itemprop="author">cclouds</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-02T05:48:22.000Z" itemprop="datePublished"> 发表于 2017-05-02</time>
+    <time datetime="2017-05-02T06:25:46.000Z" itemprop="datePublished"> 发表于 2017-05-02</time>
     
   </p>
 </header>
@@ -97,25 +97,34 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单工厂模式"><span class="toc-number">1.</span> <span class="toc-text">简单工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算器项目"><span class="toc-number">1.1.</span> <span class="toc-text">计算器项目</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算器项目"><span class="toc-number">1.</span> <span class="toc-text">计算器项目</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>简单工厂模式又叫做静态工厂方法模式，简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。</p>
-<h3 id="计算器项目"><a href="#计算器项目" class="headerlink" title="计算器项目"></a>计算器项目</h3><p>运算类</p>
+		<p>##工厂方法模式</p>
+<p>工厂方法模式的用意是定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中。</p>
+<h3 id="计算器项目"><a href="#计算器项目" class="headerlink" title="计算器项目"></a>计算器项目</h3><p>工厂接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Factory</span> </span>&#123;</div><div class="line">	<span class="function">Operation <span class="title">createOperation</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>加法类工厂实现工厂接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AddFactory</span> <span class="keyword">implements</span> <span class="title">Factory</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> OperationAdd();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>除法类工厂实现工厂接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DivFactory</span> <span class="keyword">implements</span> <span class="title">Factory</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>乘法类工厂实现工厂接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MulFactory</span> <span class="keyword">implements</span> <span class="title">Factory</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> OperationMul();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>减法类工厂实现工厂接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubFactory</span> <span class="keyword">implements</span> <span class="title">Factory</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> OperationSub();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运算类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Operation</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">protected</span> <span class="keyword">double</span> number1;</div><div class="line">	</div><div class="line">	<span class="keyword">protected</span> <span class="keyword">double</span> number2;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getNumber1</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> number1;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNumber1</span><span class="params">(<span class="keyword">double</span> number1)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.number1 = number1;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getNumber2</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> number2;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNumber2</span><span class="params">(<span class="keyword">double</span> number2)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.number2 = number2;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>加法类继承运算类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationAdd</span> <span class="keyword">extends</span> <span class="title">Operation</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">double</span> result = <span class="number">0</span>;</div><div class="line">		result = number1 + number2;</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>除法类继承运算类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationDiv</span> <span class="keyword">extends</span> <span class="title">Operation</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">double</span> result = <span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(number2 == <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"除数不能为0"</span>);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		result = number1/number2;</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationDiv</span> <span class="keyword">extends</span> <span class="title">Operation</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">double</span> result = <span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(number2 == <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"除数不能为0"</span>);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		result = number1/number2;</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>乘法类继承运算类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationMul</span> <span class="keyword">extends</span> <span class="title">Operation</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">double</span> result = <span class="number">0</span>;</div><div class="line">		result = number1 * number2;</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>减法类继承运算类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationSub</span> <span class="keyword">extends</span> <span class="title">Operation</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">double</span> result = <span class="number">0</span>;</div><div class="line">		result = number1 - number2;</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运算工厂类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationFactory</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Operation <span class="title">createOperate</span><span class="params">(String operate)</span></span>&#123;</div><div class="line">		Operation oper = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">switch</span> (operate) &#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">"+"</span>:</div><div class="line">			oper = <span class="keyword">new</span> OperationAdd();</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">"-"</span>:</div><div class="line">			oper = <span class="keyword">new</span> OperationSub();</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">"*"</span>:</div><div class="line">			oper = <span class="keyword">new</span> OperationMul();</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">"/"</span>:</div><div class="line">			oper = <span class="keyword">new</span> OperationDiv();</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">default</span>:</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> oper;	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Operation oper = OperationFactory.createOperate(<span class="string">"+"</span>);</div><div class="line">		oper.setNumber1(<span class="number">2</span>);</div><div class="line">		oper.setNumber2(<span class="number">1</span>);</div><div class="line">		System.out.println(oper.getResult());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Factory factory = <span class="keyword">new</span> AddFactory();</div><div class="line">		Operation opera = factory.createOperation();</div><div class="line">		opera.setNumber1(<span class="number">1</span>);</div><div class="line">		opera.setNumber2(<span class="number">2</span>);</div><div class="line">		System.out.println(opera.getResult());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -133,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cclouds.github.io/2017/05/02/简单工厂模式/" data-title="简单工厂模式 | cclouds" data-tsina="null" class="share clearfix">
+	  <div data-url="http://cclouds.github.io/2017/05/02/工厂方法模式/" data-title="工厂方法模式 | cclouds" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -147,21 +156,13 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/04/28/hexo提交搜索引擎/" title="hexo提交搜索引擎">
+ <a href="/2017/05/02/简单工厂模式/" title="简单工厂模式">
   <strong>上一篇：</strong><br/>
   <span>
-  hexo提交搜索引擎</span>
+  简单工厂模式</span>
 </a>
 </div>
 
-
-<div class="next">
-<a href="/2017/05/02/工厂方法模式/"  title="工厂方法模式">
- <strong>下一篇：</strong><br/> 
- <span>工厂方法模式
-</span>
-</a>
-</div>
 
 </nav>
 
@@ -173,7 +174,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单工厂模式"><span class="toc-number">1.</span> <span class="toc-text">简单工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算器项目"><span class="toc-number">1.1.</span> <span class="toc-text">计算器项目</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算器项目"><span class="toc-number">1.</span> <span class="toc-text">计算器项目</span></a></li></ol>
  
   </div>
 
