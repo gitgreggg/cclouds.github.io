@@ -11,14 +11,17 @@
     
 
     
-    <meta name="keywords">
+    <meta name="description" content="单例模式单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。 单例模式几种实现方式饿汉模式，线程安全 1234567891011public class Singleton &amp;#123;	//1.构造方法私有化	private Singleton()&amp;#123;	&amp;#125;	//2.创建类的唯一实例	private static Si">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单例模式">
 <meta property="og:url" content="http://cclouds.github.io/2017/05/03/单例模式/index.html">
 <meta property="og:site_name" content="cclouds">
-<meta property="og:updated_time" content="2017-05-03T08:32:18.035Z">
+<meta property="og:description" content="单例模式单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。 单例模式几种实现方式饿汉模式，线程安全 1234567891011public class Singleton &amp;#123;	//1.构造方法私有化	private Singleton()&amp;#123;	&amp;#125;	//2.创建类的唯一实例	private static Si">
+<meta property="og:updated_time" content="2017-05-03T08:54:10.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
+<meta name="twitter:description" content="单例模式单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。 单例模式几种实现方式饿汉模式，线程安全 1234567891011public class Singleton &amp;#123;	//1.构造方法私有化	private Singleton()&amp;#123;	&amp;#125;	//2.创建类的唯一实例	private static Si">
 
     
     <link rel="alternative" href="/atom.xml" title="cclouds" type="application/atom+xml">
@@ -96,15 +99,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式"><span class="toc-number">1.</span> <span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式几种实现方式"><span class="toc-number">1.1.</span> <span class="toc-text">单例模式几种实现方式</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。</p>
+<h3 id="单例模式几种实现方式"><a href="#单例模式几种实现方式" class="headerlink" title="单例模式几种实现方式"></a>单例模式几种实现方式</h3><p>饿汉模式，线程安全</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">	<span class="comment">//1.构造方法私有化</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//2.创建类的唯一实例</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();	</div><div class="line">	<span class="comment">//3.获取实例的方法</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getinstance</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> instance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>懒汉模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton2</span> </span>&#123;</div><div class="line">	<span class="comment">//1.构造方法私有化，外界无法用new创建此类的实例</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton2</span><span class="params">()</span></span>&#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//2.创建类的唯一实例</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton2 instance;</div><div class="line">	<span class="comment">//3.创建类的唯一实例</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton2 <span class="title">getinstance</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">//若实例不存在，则new一个新实例，否则返回已有的实例</span></div><div class="line">		<span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;     <span class="comment">//双重锁定：先判断实例是否存在，不存在再加锁</span></div><div class="line">			<span class="keyword">synchronized</span>(Singleton2.class)&#123;</div><div class="line">				<span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</div><div class="line">					instance = <span class="keyword">new</span> Singleton2();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> instance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Singleton s1 = Singleton.getinstance();</div><div class="line">		Singleton s2 = Singleton.getinstance();</div><div class="line">		System.out.println(s1==s2);</div><div class="line">		</div><div class="line">		Singleton2 s3 = Singleton2.getinstance();</div><div class="line">		Singleton2 s4 = Singleton2.getinstance();</div><div class="line">		System.out.println(s3==s4);		</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/设计模式/">设计模式</a>
+  </div>
 
 </div>
 
@@ -144,7 +159,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式"><span class="toc-number">1.</span> <span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式几种实现方式"><span class="toc-number">1.1.</span> <span class="toc-text">单例模式几种实现方式</span></a></li></ol></li></ol>
  
   </div>
 
@@ -163,11 +178,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/hexo系列/" title="hexo系列">hexo系列<sup>3</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>3</sup></a></li>
+				<li><a href="/tags/hexo系列/" title="hexo系列">hexo系列<sup>3</sup></a></li>
 			
 		
 			
